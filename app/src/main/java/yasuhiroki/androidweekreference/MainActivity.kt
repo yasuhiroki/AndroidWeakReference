@@ -18,7 +18,10 @@ class MainActivity : AppCompatActivity() {
         bitmap = resources.getDrawable(R.drawable.image).toBitmap()
 
         (application as MyApplication).also {
-            it.executeUseCase(WeakReference(this))
+            it.executeUseCase(contextRef = WeakReference(this))
+
+            // ↓はメモリリークする
+            // it.executeUseCase(context = this)
         }
 
     }

@@ -12,7 +12,13 @@ class MyApplication : Application() {
 
     fun executeUseCase(contextRef: WeakReference<Context>) {
         Log.d("TAG", "useCases.size: ${useCases.size}")
-        useCases.add(UseCase(contextRef, useCases.size))
+        useCases.add(UseCase1(contextRef, useCases.size))
+        useCases.forEach { it.execute() }
+    }
+
+    fun executeUseCase(context: Context) {
+        Log.d("TAG", "useCases.size: ${useCases.size}")
+        useCases.add(UseCase2(context, useCases.size))
         useCases.forEach { it.execute() }
     }
 }
