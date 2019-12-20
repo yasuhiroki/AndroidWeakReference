@@ -8,7 +8,9 @@ interface UseCase {
     fun execute()
 }
 
-class UseCase1 (private val contextRef: WeakReference<Context>, private val num: Int) : UseCase {
+class UseCase1 (context: Context, private val num: Int) : UseCase {
+    private val contextRef = WeakReference(context)
+
     override fun execute() {
         if (contextRef.get() != null) {
             Log.d("TAG", "${num}: ${contextRef.get()!!.packageName}")

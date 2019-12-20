@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
-import java.lang.ref.WeakReference
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,10 +17,10 @@ class MainActivity : AppCompatActivity() {
         bitmap = resources.getDrawable(R.drawable.image).toBitmap()
 
         (application as MyApplication).also {
-            it.executeUseCase(contextRef = WeakReference(this))
+            it.executeUseCase1(this)
 
             // ↓はメモリリークする
-            // it.executeUseCase(context = this)
+            // it.executeUseCase2(this)
         }
 
     }
